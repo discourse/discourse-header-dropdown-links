@@ -1,0 +1,102 @@
+.header-links {
+  --height: 3em;
+  position: sticky;
+  top: var(--header-offset);
+  z-index: 9;
+  pointer-events: none;
+
+  .wrap {
+    box-sizing: border-box;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--height);
+    background: var(--primary);
+  }
+
+  ul.header-links__items {
+    height: 100vh;
+    margin: 0;
+    margin-bottom: calc(-100vh + var(--height));
+    list-style: none;
+    width: 100%;
+    text-wrap: nowrap;
+    text-align: #{$header_links_align};
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    li.header-links__item {
+      pointer-events: all;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+
+      &:not(:first-of-type) {
+        padding-left: 1.5em;
+      }
+
+      > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        height: var(--height);
+        color: var(--secondary);
+        text-wrap: nowrap;
+
+        &:hover {
+          color: var(--tertiary);
+        }
+      }
+
+      &:hover {
+        .d-icon {
+          transform: rotate(180deg);
+        }
+
+        ul.header-links__item-dropdown {
+          display: flex;
+          position: absolute;
+          flex-direction: column;
+          text-wrap: nowrap;
+          box-shadow: var(--shadow-dropdown);
+          list-style: none;
+          margin: 0;
+          top: var(--height);
+          left: 0;
+          z-index: 999;
+          background: var(--secondary);
+
+          li {
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
+            text-align: left;
+
+            a {
+              padding: 1em;
+              color: var(--primary);
+
+              &:hover {
+                background: var(--primary-low);
+              }
+            }
+          }
+        }
+      }
+
+      ul.header-links__item-dropdown {
+        display: none;
+      }
+    }
+  }
+}

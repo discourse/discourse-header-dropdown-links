@@ -1,2 +1,37 @@
-example_setting:
-  default: true
+header_links_align:
+  default: right
+  type: enum
+  choices:
+    - left
+    - center
+    - right
+header_links:
+  type: objects
+  default: []
+  schema:
+    name: header_link
+    properties:
+      title:
+        type: string
+        required: true
+        validations:
+          min_length: 1
+      url:
+        type: string
+      dropdown_links:
+        type: objects
+        schema:
+          name: dropdown_link
+          properties:
+            title:
+              type: string
+              required: true
+              validations:
+                min_length: 1
+            url:
+              type: string
+              required: true
+              validations:
+                min_length: 1
+            description:
+              type: string
