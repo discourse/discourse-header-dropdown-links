@@ -6,13 +6,7 @@ RSpec.describe "Header Dropdown Links", type: :system do
   it "displays header links correctly with basic configuration" do
     theme.update_setting(
       :header_links,
-      [
-        {
-          title: "Basic Link",
-          url: "https://example.com",
-          dropdown_links: []
-        }
-      ]
+      [{ title: "Basic Link", url: "https://example.com", dropdown_links: [] }],
     )
     theme.save!
 
@@ -36,16 +30,16 @@ RSpec.describe "Header Dropdown Links", type: :system do
               {
                 title: "Calculator",
                 url: "https://example.com/calculator",
-                description: "Math calculations"
+                description: "Math calculations",
               },
               {
                 title: "Designer",
                 url: "https://example.com/designer",
-                description: "Design tools"
-              }
-            ]
-          }
-        ]
+                description: "Design tools",
+              },
+            ],
+          },
+        ],
       )
       theme.save!
 
@@ -54,9 +48,9 @@ RSpec.describe "Header Dropdown Links", type: :system do
       expect(page).to have_css(".header-links")
       expect(page).to have_css(".header-links__item a span", text: "Tools")
       expect(page).to have_css(".header-links__item .d-icon-angle-down")
-      
+
       page.find(".header-links__item", text: "Tools").hover
-      
+
       expect(page).to have_css(".header-links__item-dropdown", visible: true)
       expect(page).to have_css(".header-links__item-dropdown a span", text: "Calculator")
       expect(page).to have_css(".header-links__item-dropdown a span", text: "Designer")
@@ -74,14 +68,10 @@ RSpec.describe "Header Dropdown Links", type: :system do
             title: "Resources",
             url: "https://example.com/resources",
             dropdown_links: [
-              {
-                title: "Documentation",
-                url: "https://example.com/docs",
-                description: ""
-              }
-            ]
-          }
-        ]
+              { title: "Documentation", url: "https://example.com/docs", description: "" },
+            ],
+          },
+        ],
       )
       theme.save!
 
@@ -99,14 +89,10 @@ RSpec.describe "Header Dropdown Links", type: :system do
             title: "Menu",
             url: "https://example.com/should-be-ignored",
             dropdown_links: [
-              {
-                title: "Submenu Item",
-                url: "https://example.com/submenu",
-                description: ""
-              }
-            ]
-          }
-        ]
+              { title: "Submenu Item", url: "https://example.com/submenu", description: "" },
+            ],
+          },
+        ],
       )
       theme.save!
 
@@ -123,13 +109,7 @@ RSpec.describe "Header Dropdown Links", type: :system do
     it "displays as regular link without dropdown" do
       theme.update_setting(
         :header_links,
-        [
-          {
-            title: "Simple Link",
-            url: "https://example.com/simple",
-            dropdown_links: []
-          }
-        ]
+        [{ title: "Simple Link", url: "https://example.com/simple", dropdown_links: [] }],
       )
       theme.save!
 
@@ -145,28 +125,16 @@ RSpec.describe "Header Dropdown Links", type: :system do
     theme.update_setting(
       :header_links,
       [
-        {
-          title: "Simple Link",
-          url: "https://example.com/simple",
-          dropdown_links: []
-        },
+        { title: "Simple Link", url: "https://example.com/simple", dropdown_links: [] },
         {
           title: "Dropdown Link",
           url: "https://example.com/dropdown",
           dropdown_links: [
-            {
-              title: "Sub Item 1",
-              url: "https://example.com/sub1",
-              description: "First item"
-            },
-            {
-              title: "Sub Item 2",
-              url: "https://example.com/sub2",
-              description: ""
-            }
-          ]
-        }
-      ]
+            { title: "Sub Item 1", url: "https://example.com/sub1", description: "First item" },
+            { title: "Sub Item 2", url: "https://example.com/sub2", description: "" },
+          ],
+        },
+      ],
     )
     theme.save!
 
@@ -176,7 +144,7 @@ RSpec.describe "Header Dropdown Links", type: :system do
     expect(page).to have_css(".header-links__item a span", text: "Simple Link")
     expect(page).to have_css(".header-links__item a span", text: "Dropdown Link")
     expect(page).to have_css(".header-links__item .d-icon-angle-down")
-    
+
     page.find(".header-links__item", text: "Dropdown Link").hover
     expect(page).to have_css(".header-links__item-dropdown a span", text: "Sub Item 1")
     expect(page).to have_css(".header-links__item-dropdown a span", text: "Sub Item 2")
