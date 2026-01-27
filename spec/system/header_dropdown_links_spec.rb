@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Header Dropdown Links", type: :system do
+RSpec.describe "Header Dropdown Links" do
   let!(:theme) { upload_theme_component }
 
   it "displays header links correctly with basic configuration" do
